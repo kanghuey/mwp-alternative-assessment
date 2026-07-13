@@ -6,13 +6,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="MWP Alternative Assessment-">
+  <meta name="description" content="MWP Alternative Assessment - Group Portfolio">
 
-  <title>Group Portfolio</title>
+  <title>MWP Alternative Assessment - Group Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/src/style.css"/>
 </head>
 
 <body>
   <main>
+    <!-- Hero -->
     <section id="home" class="hero-section">
       <canvas id="webgl" aria-label="Interactive 3D landing scene"></canvas>
 
@@ -20,7 +25,7 @@
 
       <header class="site-header">
         <a class="logo" href="#home">
-          GROUP NAME
+          CyberForge
         </a>
 
         <nav aria-label="Main navigation">
@@ -39,16 +44,16 @@
           </p>
 
           <h1>
-            PORTFOLIO
-            <span>TITLE</span>
+            CYBER
+            <span class="gradient-text">FORGE</span>
           </h1>
 
           <p class="hero-tagline">
-            TAGLINE
+            Building the Future, One Line of Code at a Time
           </p>
 
           <p class="hero-description">
-            Group introduction
+            We are a team of SECVH from Faculty of Computing, Universiti Teknologi Malaysia (UTM).
           </p>
 
           <a class="hero-button" href="#about">
@@ -62,6 +67,7 @@
       </a>
     </section>
 
+    <!-- About Us -->
     <section id="about" class="content-section">
       <div class="section-container">
         <header class="section-header">
@@ -70,16 +76,76 @@
           </p>
 
           <h2 class="section-title">
-            About Us
+            About <span class="gradient-text">Us</span>
           </h2>
 
           <p class="section-description">
-            Content
+            Meet the team behind the code
           </p>
         </header>
+
+        <!-- Member Cards -->
+        <div class="about-grid">
+          <!-- Member 1 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members/member1.jpg" alt="Member 1" />
+            </div>
+            <h3 class="member-name">Chneg Kang Huey</h3>
+            <p class="member-role">Core 3D Engineer</p>
+            <div class="member-details">
+              <p><strong>Education:</strong> Computer Science</p>
+              <p><strong>Interests:</strong> </p>
+              <p><strong>Achievements:</strong> </p>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members/member2.jpg" alt="Member 2" />
+            </div>
+            <h3 class="member-name">Ong Jie Min</h3>
+            <p class="member-role">UI/UX & Frontend Lead</p>
+            <div class="member-details">
+              <p><strong>Education:</strong> Computer Science</p>
+              <p><strong>Interests:</strong> </p>
+              <p><strong>Achievements:</strong> </p>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members/member3.jpg" alt="Member 3" />
+            </div>
+            <h3 class="member-name">Lee Jian Ai</h3>
+            <p class="member-role">Content & Multimedia Manager</p>
+            <div class="member-details">
+              <p><strong>Education:</strong> Computer Science</p>
+              <p><strong>Interests:</strong> </p>
+              <p><strong>Achievements:</strong> </p>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members/member4.jpg" alt="Member 4" />
+            </div>
+            <h3 class="member-name">Loh Hui Yi</h3>
+            <p class="member-role">3D Objects & Interactions Lead</p>
+            <div class="member-details">
+              <p><strong>Education:</strong> Computer Science</p>
+              <p><strong>Interests:</strong> </p>
+              <p><strong>Achievements:</strong> </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Skills Showcase -->
     <section id="skills" class="content-section">
       <div class="section-container">
         <header class="section-header">
@@ -88,16 +154,71 @@
           </p>
     
           <h2 class="section-title">
-            Skills Showcase
+            Skills <span class="gradient-text">Showcase</span>
           </h2>
     
           <p class="section-description">
-            Content
+            Technical expertise of our team
           </p>
         </header>
+
+        <!-- 3D Skills Container -->
+        <div id="skills-three-container"></div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid">
+          <!-- Member 1 Skills -->
+          <div class="skill-category">
+            <h4>Cheng Kang Huey</h4>
+            <div class="skill-tags">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Member 2 Skills -->
+          <div class="skill-category">
+            <h4>Ong Jie Min</h4>
+            <div class="skill-tags">
+              <span>HTML/CSS</span>
+              <span>JavaScript</span>
+              <span>Figma</span>
+              <span>UI/UX Design</span>
+              <span>Responsive Design</span>
+            </div>
+          </div>
+
+          <!-- Member 3 Skills -->
+          <div class="skill-category">
+            <h4>Lee Jian Ai</h4>
+            <div class="skill-tags">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Member 4 Skills -->
+          <div class="skill-category">
+            <h4>Loh Hui Yi</h4>
+            <div class="skill-tags">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div> 
       </div>
     </section>
 
+    <!-- Project Gallery -->
     <section id="project" class="content-section">
       <div class="section-container">
         <header class="section-header">
@@ -106,16 +227,203 @@
           </p>
     
           <h2 class="section-title">
-            Project Gallery
+            Project <span class="gradient-text">Gallery</span>
           </h2>
     
           <p class="section-description">
-            Content
+            Showcasing our best work
           </p>
         </header>
+
+        <div class="projects-grid">
+          <!-- Member 1 Projects -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member1_project1.jpg" alt="Project 1.1" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+             </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member1_project2.jpg" alt="Project 1.2" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member1_project3.jpg" alt="Project 1.3" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 Projects -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member2_project1.jpg" alt="Project 2.1" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member2_project2.jpg" alt="Project 2.2" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member2_project3.jpg" alt="Project 2.3" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 Projects -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member3_project1.jpg" alt="Project 3.1" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member3_project2.jpg" alt="Project 3.2" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member3_project3.jpg" alt="Project 3.3" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 Projects -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member4_project1.jpg" alt="Project 4.1" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member4_project2.jpg" alt="Project 4.2" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="/src/assets/projects/member4_project3.jpg" alt="Project 4.3" />
+            </div>
+            <div class="project-content">
+              <h3>Project Title</h3>
+              <p>Description</p>
+              <div class="project-tech">
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+                <span>Tag 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     
+    <!-- Contact -->
     <section id="contact" class="content-section">
       <div class="section-container">
         <header class="section-header">
@@ -124,13 +432,35 @@
           </p>
     
           <h2 class="section-title">
-            Contact Us
+            Contact <span class="gradient-text">Us</span>
           </h2>
     
           <p class="section-description">
-            Content
+            Get in touch with our team
           </p>
         </header>
+
+        <div class="contact-wrapper">
+          <div class="contact-form">
+            <form id="contactForm">
+              <input type="text" id="name" placeholder="Your Name" required />
+              <input type="email" id="email" placeholder="Your Email" required />
+              <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+              <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+              <a href="mailto:groupx@gmail.com" class="social-link">Email Us</a>
+              <a href="#" class="social-link">LinkedIn</a>
+              <a href="#" class="social-link">GitHub</a>
+              <a href="#" class="social-link">Instagram</a>
+              <a href="#" class="social-link">Twitter</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -138,7 +468,7 @@
 
   <footer class="site-footer">
     <p>
-      © 2026 Group Name. All rights reserved.
+      © 2026 Cyber Forge. All rights reserved.
     </p>
   </footer>
 
