@@ -4,10 +4,151 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MWP Alternative Assessment</title>
+    <title>MWP Alternative Assessment - Group Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css"/>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Navigation -->
+     <nav id="navbar">
+      <div class="container">
+        <div class="nav-logo">
+          <span class="logo-text">GROUP</span>
+          <span class="logo-accent">X</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+     </nav>
+
+    <!-- Landing Page --> 
+     <section id="home" class="section hero-section">
+      <div class="container hero-container">
+        <div id="three-container"></div>
+
+        <!-- Content -->
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="gradient-text">CyberForge</span>
+          </h1>
+          <p class="hero-tagline">
+            Builidng the Future, One Line Code at a Time
+          </p>
+          <p class="hero-intro">
+            We are a team of SECVH from Faculty of Computing, Universiti Teknologi Malaysia (UTM).
+          </p>
+        </div>
+      </div>
+     </section>
+
+    <!-- About Us -->
+     <section id="about" class="section about-section">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <p class="section-subtitle">
+          Meet the team
+        </p>
+
+        <!-- Members -->
+        <div class="about-grid">
+          <!-- Member 1 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members" alt="Member 1"/>
+            </div>
+            <h3 class="member-name">Member 1</h3>
+            <div class="member-details">
+              <p><strong>Education:</strong></p> Computer Science</p>
+            </div>
+          </div> 
+
+          <!-- Member 2 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members" alt="Member 2"/>
+            </div>
+            <h3 class="member-name">Member 2</h3>
+            <div class="member-details">
+              <p><strong>Education:</strong></p> Computer Science</p>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members" alt="Member 3"/>
+            </div>
+            <h3 class="member-name">Member 3</h3>
+            <div class="member-details">
+              <p><strong>Education:</strong></p> Computer Science</p>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="member-card">
+            <div class="member-image">
+              <img src="/src/assets/members" alt="Member 4"/>
+            </div>
+            <h3 class="member-name">Member 4</h3>
+            <div class="member-details">
+              <p><strong>Education:</strong></p> Computer Science</p>
+            </div>
+          </div>
+
+        </div> 
+      </div>
+     </section>
+
+    <!-- Skills Showcase -->  
+     <section id="skills" class="section skills-section">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Technical skills of our team</p>
+
+        <div id="skills-three-container"></div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Member 1</h4>
+          </div>
+
+          <div class="skill-category">
+            <h4>Member 2</h4>
+          </div>
+
+          <div class="skill-category">
+            <h4>Member 3</h4>
+          </div>
+
+          <div class="skill-category">
+            <h4>Member 4</h4>
+          </div>
+
+        </div>
+      </div>
+     </section>
+
+    <!-- Project Gallery --> 
+     <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="section-title">Project Gallery</h2>
+        <p class="section-subtitle">Showcasing our best work</p>
+      </div>
+     </section>
+
+    <!-- Contact --> 
+     <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Get in touch with our team</p>
+      </div>
+     </section>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
