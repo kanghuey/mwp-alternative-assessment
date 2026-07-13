@@ -337,6 +337,38 @@ p {
   .hero-tagline {
     font-size: 1.2rem;
   }
+  .section-title {
+    font-size: 2rem;
+  }
+  .section {
+    padding: 60px 0;
+    min-height: auto;
+  }
+  .hero-section {
+    min-height: 100vh;
+  }
+  .member-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .member-card {
+    padding: 15px;
+  }
+  .member-image {
+    width: 80px;
+    height: 80px;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .container {
+    padding: 0 15px;
+  }
 }
 
 code {
