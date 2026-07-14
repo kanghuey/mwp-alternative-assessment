@@ -77,3 +77,23 @@ form.addEventListener('submit', async(e)=>{
     submitBtn.disabled = false;
   }
 });
+
+const btns = document.querySelectorAll(".social-link");
+
+btns.forEach(btn => {
+    btn.addEventListener("click", e => {
+        e.stopPropagation();
+
+        document.querySelectorAll(".drop-menu").forEach(menu =>
+            menu.classList.remove("active")
+        );
+
+        btn.nextElementSibling.classList.add("active");
+    });
+});
+
+window.addEventListener("click", () => {
+    document.querySelectorAll(".drop-menu").forEach(menu =>
+        menu.classList.remove("active")
+    );
+});
