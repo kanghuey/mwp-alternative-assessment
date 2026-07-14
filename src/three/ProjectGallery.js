@@ -143,13 +143,12 @@ export class ProjectGallery {
 
     this.data.forEach((project, i) => {
       const geometry = new THREE.PlaneGeometry(width, height, 1, 1);
-      const material = new THREE.MeshStandardMaterial({
+      const material = new THREE.MeshBasicMaterial({
         color: 0xffffff,
-        roughness: 0.5,
-        metalness: 0.05,
         transparent: true,
         side: THREE.DoubleSide,
         map: this._makeFallbackTexture(project.title),
+        toneMapped: false,
       });
 
       const mesh = new THREE.Mesh(geometry, material);
