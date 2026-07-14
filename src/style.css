@@ -970,13 +970,13 @@ h4 {
   .site-header nav {
     width: 100%;
     display: flex;
-    justify-content: space-between;  /* ✅ Evenly spread links */
+    justify-content: space-between;
     gap: 0;
     padding: 7px 10px;
   }
 
   .site-header nav a {
-    flex: 1;  /* ✅ Each link takes equal space */
+    flex: 1;
     text-align: center;
     padding: 10px 8px;
     font-size: 0.85rem;
