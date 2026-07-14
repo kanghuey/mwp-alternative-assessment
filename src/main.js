@@ -39,3 +39,63 @@ window.addEventListener('beforeunload', () => {
   skillsScene?.dispose();
   projectGallery?.dispose();
 });
+
+// Contact Form - web3forms API Call
+const form = document.getElementById('contactForm');
+const submitBtn = form.querySelector('button[type="submit');
+
+form.addEventListener('submit', async(e)=>{
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  formData.append("access_key", "3f601a47-7d58-4494-92f0-7e1e8ace37c4");
+  
+  const originalText = submitBtn.textContent;
+
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
+
+  try{
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method:"POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if(response.ok){
+      alert("Success! Your message has been sent.");
+      form.reset();
+    }
+    else{
+      alert("Error: " + data.message);
+    }
+  } catch(error){
+    alert("Something went wrong. Please try again.")
+  }finally{
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
+
+
+// Button dropdown
+const btns = document.querySelectorAll(".social-link");
+
+btns.forEach(btn => {
+    btn.addEventListener("click", e => {
+        e.stopPropagation();
+
+        document.querySelectorAll(".drop-menu").forEach(menu =>
+            menu.classList.remove("active")
+        );
+
+        btn.nextElementSibling.classList.add("active");
+    });
+});
+
+window.addEventListener("click", () => {
+    document.querySelectorAll(".drop-menu").forEach(menu =>
+        menu.classList.remove("active")
+    );
+});
