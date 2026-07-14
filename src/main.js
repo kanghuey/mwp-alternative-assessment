@@ -78,6 +78,8 @@ form.addEventListener('submit', async(e)=>{
   }
 });
 
+
+// Button dropdown
 const btns = document.querySelectorAll(".social-link");
 
 btns.forEach(btn => {
