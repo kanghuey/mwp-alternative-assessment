@@ -163,7 +163,10 @@
         </header>
 
         <!-- 3D Skills Container -->
-        <div id="skills-three-container"></div>
+        <div id="skills-three-container">
+          <canvas id="skills-webgl" aria-label="Interactive 3D skills visualization"></canvas>
+          <p class="three-hint">Drag to rotate &middot; scroll to zoom &middot; hover a node</p>
+        </div>
 
         <!-- Skills Grid -->
         <div class="skills-grid">
@@ -171,11 +174,11 @@
           <div class="skill-category">
             <h4>Cheng Kang Huey</h4>
             <div class="skill-tags">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <span>a</span>
+              <span>a</span>
+              <span>a</span>
+              <span>a</span>
+              <span>a</span>
             </div>
           </div>
 
@@ -195,11 +198,11 @@
           <div class="skill-category">
             <h4>Lee Jian Ai</h4>
             <div class="skill-tags">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <span>b</span>
+              <span>b</span>
+              <span>b</span>
+              <span>b</span>
+              <span>b</span>
             </div>
           </div>
 
@@ -207,11 +210,11 @@
           <div class="skill-category">
             <h4>Loh Hui Yi</h4>
             <div class="skill-tags">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <span>c</span>
+              <span>c</span>
+              <span>c</span>
+              <span>c</span>
+              <span>c</span>
             </div>
           </div>
         </div> 
@@ -235,7 +238,31 @@
           </p>
         </header>
 
-        <div class="projects-grid">
+        <!-- 3D Project Gallery (coverflow carousel) -->
+        <div id="project-gallery-3d">
+          <canvas id="projects-webgl" aria-label="Interactive 3D project gallery"></canvas>
+          <div class="gallery-controls">
+            <button type="button" id="gallery-prev" class="gallery-nav-btn" aria-label="Previous project">&#8592;</button>
+            <button type="button" id="gallery-next" class="gallery-nav-btn" aria-label="Next project">&#8594;</button>
+          </div>
+          <p class="three-hint">Drag or use the arrows &middot; click the front card for details</p>
+        </div>
+
+        <!-- Project detail modal, filled in by ProjectGallery.js on click -->
+        <div id="project-detail-modal" class="project-modal" hidden>
+          <div class="project-modal-content">
+            <button type="button" class="project-modal-close" aria-label="Close project details">&times;</button>
+            <div class="project-modal-image">
+              <img id="modal-project-image" src="" alt="" />
+            </div>
+            <h3 id="modal-project-title"></h3>
+            <p id="modal-project-description"></p>
+            <div class="project-tech" id="modal-project-tech"></div>
+          </div>
+        </div>
+
+        <!-- Data source for the 3D gallery above; also the no-JS fallback -->
+        <div class="projects-grid" id="projects-data-source">
           <!-- Member 1 Projects -->
           <div class="project-card">
             <div class="project-image">
@@ -334,7 +361,7 @@
               <img src="/src/assets/projects/member3_project1.jpg" alt="Project 3.1" />
             </div>
             <div class="project-content">
-              <h3>Project Title</h3>
+              <h3>KFK Website</h3>
               <p>Description</p>
               <div class="project-tech">
                 <span>Tag 3</span>
