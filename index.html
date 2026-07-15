@@ -19,25 +19,25 @@
 
 <body>
   <main>
+    <header class="site-header">
+      <a class="logo" href="#home">
+        CyberForge
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#skills">Skills</a>
+        <a href="#project">Project Gallery</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+    </header>
+
     <!-- Hero -->
     <section id="home" class="hero-section">
       <canvas id="webgl" aria-label="Interactive 3D landing scene"></canvas>
 
       <div class="hero-background"></div>
-
-      <header class="site-header">
-        <a class="logo" href="#home">
-          CyberForge
-        </a>
-
-        <nav aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#about">About Us</a>
-          <a href="#skills">Skills</a>
-          <a href="#project">Project Gallery</a>
-          <a href="#contact">Contact Us</a>
-        </nav>
-      </header>
 
       <div class="hero-content">
         <div class="hero-copy">
@@ -254,8 +254,21 @@
         <div id="project-detail-modal" class="project-modal" hidden>
           <div class="project-modal-content">
             <button type="button" class="project-modal-close" aria-label="Close project details">&times;</button>
-            <div class="project-modal-image">
-              <img id="modal-project-image" src="" alt="" />
+            <div class="project-modal-media">
+              <img
+                id="modal-project-image"
+                src=""
+                alt=""
+                hidden
+              />
+            
+              <video
+                id="modal-project-video"
+                controls
+                playsinline
+                preload="metadata"
+                hidden
+              ></video>
             </div>
             <h3 id="modal-project-title"></h3>
             <p id="modal-project-description"></p>
@@ -265,7 +278,7 @@
 
         <div class="projects-grid" id="projects-data-source">
           <!-- Member 1 Projects -->
-          <div class="project-card">
+          <div class="project-card" data-video="/assets/videos/m1p1.mp4">
             <div class="project-image">
               <img src="/assets/projects/member1_project1.webp" alt="Project 1.1" />
             </div>
@@ -381,7 +394,8 @@
             </div>
             <div class="project-content">
               <h3>MyImagePro</h3>
-              <p>Description</p>
+              <p>MyImagePro is a basic image editing application, which will first process the input image and 
+                sync all the adjustments and alterations on it in real-time。</p>
               <div class="project-tech">
                 <span>Image Processing</span>
                 <span>Python</span>
@@ -395,7 +409,8 @@
             </div>
             <div class="project-content">
               <h3>SyncPose</h3>
-              <p>Description</p>
+              <p>A cross-platform game that allow the HoloLens user and PC user to interact in the same space, 
+                with the PC user's avatar appears in Holopresence from the view of HoloLens.</p>
               <div class="project-tech">
                 <span>Holopresence</span>
                 <span>Avatar</span>
