@@ -566,17 +566,25 @@ h4 {
   background: var(--section-background);
 }
 
-.project-modal-image {
+.project-modal-media {
   width: 100%;
   margin-bottom: 20px;
-  border-radius: 14px;
   overflow: hidden;
+
+  border-radius: 14px;
+  background: #000;
 }
 
-.project-modal-image img {
+.project-modal-media img,
+.project-modal-media video {
   display: block;
   width: 100%;
-  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.project-modal-media > [hidden] {
+  display: none !important;
 }
 
 .project-modal-close {

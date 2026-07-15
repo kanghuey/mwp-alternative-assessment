@@ -57,20 +57,49 @@ export class ProjectGallery {
 
   _readProjectData() {
     const cardEls = this.dataSource
-      ? Array.from(this.dataSource.querySelectorAll('.project-card'))
+      ? Array.from(
+          this.dataSource.querySelectorAll(
+            '.project-card'
+          )
+        )
       : [];
-
+  
     this.data = cardEls.map((el) => ({
-      image: el.querySelector('.project-image img')?.getAttribute('src') || '',
-      title: el.querySelector('.project-content h3')?.textContent?.trim() || 'Project',
-      description: el.querySelector('.project-content p')?.textContent?.trim() || '',
-      tech: Array.from(el.querySelectorAll('.project-tech span'))
-        .map((s) => s.textContent.trim())
+      image:
+        el
+          .querySelector('.project-image img')
+          ?.getAttribute('src') || '',
+  
+      video:
+        el.dataset.video || '',
+  
+      title:
+        el
+          .querySelector('.project-content h3')
+          ?.textContent?.trim() || 'Project',
+  
+      description:
+        el
+          .querySelector('.project-content p')
+          ?.textContent?.trim() || '',
+  
+      tech: Array.from(
+        el.querySelectorAll('.project-tech span')
+      )
+        .map((span) => span.textContent.trim())
         .filter(Boolean),
     }));
-
+  
     if (this.data.length === 0) {
-      this.data = [{ image: '', title: 'Project', description: 'Add project details.', tech: [] }];
+      this.data = [
+        {
+          image: '',
+          video: '',
+          title: 'Project',
+          description: 'Add project details.',
+          tech: [],
+        },
+      ];
     }
   }
 
@@ -173,27 +202,94 @@ export class ProjectGallery {
   }
 
   openModal(index) {
-    if (!this.modal) return;
+    if (!this.modal) {
+      return;
+    }
+  
     const project = this.data[index];
-    this.modal.querySelector('#modal-project-image').src = project.image;
-    this.modal.querySelector('#modal-project-image').alt = project.title;
-    this.modal.querySelector('#modal-project-title').textContent = project.title;
-    this.modal.querySelector('#modal-project-description').textContent = project.description;
-
-    const techContainer = this.modal.querySelector('#modal-project-tech');
+  
+    const image =
+      this.modal.querySelector(
+        '#modal-project-image'
+      );
+  
+    const video =
+      this.modal.querySelector(
+        '#modal-project-video'
+      );
+  
+    image.hidden = true;
+    video.hidden = true;
+  
+    video.pause();
+    video.removeAttribute('src');
+    video.removeAttribute('poster');
+    video.load();
+  
+    if (project.video) {
+      video.src = project.video;
+  
+      if (project.image) {
+        video.poster = project.image;
+      }
+  
+      video.hidden = false;
+      video.load();
+    } else {
+      image.src = project.image;
+      image.alt = project.title;
+      image.hidden = false;
+    }
+  
+    this.modal.querySelector(
+      '#modal-project-title'
+    ).textContent = project.title;
+  
+    this.modal.querySelector(
+      '#modal-project-description'
+    ).textContent = project.description;
+  
+    const techContainer =
+      this.modal.querySelector(
+        '#modal-project-tech'
+      );
+  
     techContainer.innerHTML = '';
+  
     project.tech.forEach((tag) => {
-      const span = document.createElement('span');
+      const span =
+        document.createElement('span');
+  
       span.textContent = tag;
       techContainer.appendChild(span);
     });
-
+  
     this.modal.hidden = false;
-    this.modal.querySelector('.project-modal-close')?.focus();
+  
+    this.modal
+      .querySelector('.project-modal-close')
+      ?.focus();
   }
 
   closeModal() {
-    if (this.modal) this.modal.hidden = true;
+    if (!this.modal) {
+      return;
+    }
+  
+    const video =
+      this.modal.querySelector(
+        '#modal-project-video'
+      );
+  
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+      video.removeAttribute('src');
+      video.removeAttribute('poster');
+      video.load();
+    }
+  
+    this.modal.hidden = true;
   }
 
   /* Events */
