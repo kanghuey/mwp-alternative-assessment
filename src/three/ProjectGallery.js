@@ -320,9 +320,7 @@ export class ProjectGallery {
     this.renderer.setSize(width, height, false);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Render loop                                                             */
-  /* ---------------------------------------------------------------------- */
+  /* Render loop */
 
   _tick() {
     this.frameId = requestAnimationFrame(this._tick);
