@@ -1,23 +1,5 @@
 import * as THREE from 'three';
 
-/**
- * SkillsScene
- * Interactive Three.js visualization for the Skills Showcase section.
- *
- * Reads its data straight from the existing DOM (`#skills .skill-category`)
- * so it always matches whatever names/skills are written in index.html —
- * no separate data file to keep in sync.
- *
- * Each teammate's skills become one rotating "ring" of small 3D nodes with
- * floating text labels. Rings sit at different heights and spin at
- * different speeds so the whole thing reads as "the team's combined skill
- * set" rather than a generic shape cloud.
- *
- * Requirement coverage for this section:
- *  - Interactive/animated 3D elements -> ring rotation + node bobbing,
- *    drag-to-orbit camera, scroll-wheel zoom, hover highlight + tooltip,
- *    click pulse.
- */
 export class SkillsScene {
   constructor(container, canvas) {
     this.container = container;
@@ -27,6 +9,9 @@ export class SkillsScene {
     this.clock = new THREE.Clock();
     this.frameId = null;
     this.isVisible = false;
+    this.activeMemberIndex = null;
+    this.memberCards = [];
+    this.memberCardHandlers = [];
 
     this.drag = { active: false, lastX: 0, lastY: 0 };
     this.rotation = { x: -0.2, y: 0 };
@@ -40,6 +25,7 @@ export class SkillsScene {
     this._initLights();
     this._buildNodes();
     this._initTooltip();
+    this._initMemberSelection();
     this._initEvents();
     this._observeVisibility();
     this._onResize();
@@ -55,9 +41,7 @@ export class SkillsScene {
     this._tick = this._tick.bind(this);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Data                                                                    */
-  /* ---------------------------------------------------------------------- */
+  /* Data */
 
   _readSkillData() {
     const categories = Array.from(document.querySelectorAll('#skills .skill-category'));
@@ -78,9 +62,7 @@ export class SkillsScene {
     }
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Setup                                                                   */
-  /* ---------------------------------------------------------------------- */
+  /* Setup */
 
   _initScene() {
     this.scene = new THREE.Scene();
@@ -156,7 +138,7 @@ export class SkillsScene {
       this.group.add(ringGroup);
       this.rings.push(ringGroup);
 
-      const radius = 3.4 + (member.skills.length > 5 ? 0.6 : 0);
+      const radius = 4.0 + (member.skills.length > 5 ? 0.6 : 0);
       const color = palette[ringIndex % palette.length];
 
       member.skills.forEach((skillName, i) => {
@@ -170,10 +152,14 @@ export class SkillsScene {
           color,
           roughness: 0.35,
           metalness: 0.2,
+          transparent: true,
           flatShading: true,
           emissive: new THREE.Color(color),
           emissiveIntensity: 0.12,
         });
+
+        material.userData.targetOpacity = 1;
+
         const node = new THREE.Mesh(geometry, material);
         node.userData.baseEmissive = 0.12;
         node.userData.skillName = skillName;
@@ -184,11 +170,18 @@ export class SkillsScene {
         const label = this._makeLabelSprite(skillName, `#${color.toString(16).padStart(6, '0')}`);
         label.position.set(0, 0.65, 0);
 
+        label.material.userData.targetOpacity = 1;
+
         nodeGroup.add(node);
         nodeGroup.add(label);
         ringGroup.add(nodeGroup);
 
-        this.nodes.push({ mesh: node, group: nodeGroup, label });
+        this.nodes.push({
+          mesh: node,
+          group: nodeGroup,
+          label,
+          memberIndex: ringIndex,
+        });
       });
 
       // A thin ring/orbit line under each member's nodes for readability
@@ -199,6 +192,8 @@ export class SkillsScene {
         opacity: 0.18,
         side: THREE.DoubleSide,
       });
+      ringMaterial.userData.targetOpacity = 0.18;
+      ringGroup.userData.ringMaterial = ringMaterial;
       const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
       ringMesh.rotation.x = Math.PI / 2;
       ringGroup.add(ringMesh);
@@ -212,9 +207,98 @@ export class SkillsScene {
     this.container.appendChild(this.tooltip);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Events                                                                  */
-  /* ---------------------------------------------------------------------- */
+  /* Events */
+
+  _initMemberSelection() {
+    this.memberCards = Array.from(
+      document.querySelectorAll('#skills .skill-category')
+    );
+  
+    this.memberCardHandlers = this.memberCards.map(
+      (card, index) => {
+        const select = () => {
+          this._selectMember(index);
+        };
+  
+        const selectWithKeyboard = (event) => {
+          if (
+            event.key !== 'Enter' &&
+            event.key !== ' '
+          ) {
+            return;
+          }
+  
+          event.preventDefault();
+          select();
+        };
+  
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-pressed', 'false');
+  
+        card.addEventListener('click', select);
+        card.addEventListener(
+          'keydown',
+          selectWithKeyboard
+        );
+  
+        return {
+          card,
+          select,
+          selectWithKeyboard,
+        };
+      }
+    );
+  }
+  
+  _selectMember(index) {
+    this.activeMemberIndex =
+      this.activeMemberIndex === index
+        ? null
+        : index;
+  
+    this.memberCards.forEach((card, cardIndex) => {
+      const isSelected =
+        cardIndex === this.activeMemberIndex;
+  
+      card.classList.toggle(
+        'is-selected',
+        isSelected
+      );
+  
+      card.setAttribute(
+        'aria-pressed',
+        String(isSelected)
+      );
+    });
+  
+    this.nodes.forEach(
+      ({
+        mesh,
+        label,
+        memberIndex,
+      }) => {
+        const isVisible =
+          this.activeMemberIndex === null ||
+          memberIndex === this.activeMemberIndex;
+  
+        mesh.material.userData.targetOpacity =
+          isVisible ? 1 : 0.12;
+  
+        label.material.userData.targetOpacity =
+          isVisible ? 1 : 0.15;
+      }
+    );
+  
+    this.rings.forEach((ring, ringIndex) => {
+      const isVisible =
+        this.activeMemberIndex === null ||
+        ringIndex === this.activeMemberIndex;
+  
+      ring.userData.ringMaterial.userData.targetOpacity =
+        isVisible ? 0.18 : 0.025;
+    });
+  }
 
   _initEvents() {
     this.raycaster = new THREE.Raycaster();
@@ -340,9 +424,7 @@ export class SkillsScene {
     this.renderer.setSize(width, height, false);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Render loop                                                             */
-  /* ---------------------------------------------------------------------- */
+  /* Render loop */
 
   _tick() {
     this.frameId = requestAnimationFrame(this._tick);
@@ -373,11 +455,45 @@ export class SkillsScene {
     // Animation 1: each member's ring spins at its own speed
     this.rings.forEach((ring) => {
       ring.rotation.y += ring.userData.spin * delta;
+    
+      const ringMaterial =
+        ring.userData.ringMaterial;
+    
+      ringMaterial.opacity =
+        THREE.MathUtils.lerp(
+          ringMaterial.opacity,
+          ringMaterial.userData.targetOpacity,
+          0.1
+        );
     });
 
     // Animation 2: individual nodes bob up and down
-    this.nodes.forEach(({ mesh, group }) => {
+    this.nodes.forEach(
+      ({
+        mesh,
+        group,
+        label,
+        memberIndex,
+      }) => {
       group.position.y = Math.sin(elapsed * 0.8 + mesh.userData.floatOffset) * 0.18;
+      
+      mesh.material.opacity =
+      THREE.MathUtils.lerp(
+        mesh.material.opacity,
+        mesh.material.userData.targetOpacity,
+        0.1
+      );
+    
+    label.material.opacity =
+      THREE.MathUtils.lerp(
+        label.material.opacity,
+        label.material.userData.targetOpacity,
+        0.1
+      );
+    
+    const isDimmed =
+      this.activeMemberIndex !== null &&
+      memberIndex !== this.activeMemberIndex;
 
       if (mesh.userData.pulse && mesh.userData.pulse > 1) {
         mesh.userData.pulse += (1 - mesh.userData.pulse) * 0.15;
@@ -385,7 +501,10 @@ export class SkillsScene {
         mesh.scale.set(s, s, s);
         mesh.material.emissiveIntensity = mesh.userData.baseEmissive + (mesh.userData.pulse - 1) * 0.6;
       } else {
-        mesh.material.emissiveIntensity = mesh.userData.baseEmissive;
+        mesh.material.emissiveIntensity =
+          isDimmed
+            ? 0.02
+            : mesh.userData.baseEmissive;
       }
     });
 
