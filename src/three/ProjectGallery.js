@@ -1,19 +1,5 @@
 import * as THREE from 'three';
 
-/**
- * ProjectGallery
- * Interactive Three.js "coverflow" carousel for the Project Gallery section.
- *
- * Reads project data (image, title, description, tech tags) straight from
- * the existing `.projects-grid .project-card` markup, so the 3D showcase
- * always matches whatever projects are listed in index.html. The original
- * grid is kept in the DOM as a no-JS fallback and is hidden once the 3D
- * gallery has successfully initialized.
- *
- * Requirement coverage for this section:
- *  - Interactive gallery / 3D showcase -> drag-to-spin carousel, prev/next
- *    buttons, keyboard left/right navigation, click-to-open detail modal.
- */
 export class ProjectGallery {
   constructor(container, canvas, { prevButton, nextButton, modal, dataSource } = {}) {
     this.container = container;
@@ -67,9 +53,7 @@ export class ProjectGallery {
     };
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Data                                                                    */
-  /* ---------------------------------------------------------------------- */
+  /* Data */
 
   _readProjectData() {
     const cardEls = this.dataSource
@@ -90,9 +74,7 @@ export class ProjectGallery {
     }
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Setup                                                                   */
-  /* ---------------------------------------------------------------------- */
+  /* Setup */
 
   _initScene() {
     this.scene = new THREE.Scene();
@@ -177,9 +159,7 @@ export class ProjectGallery {
     this._snapTo(0, false);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Navigation                                                              */
-  /* ---------------------------------------------------------------------- */
+  /* Navigation */
 
   _navigate(direction) {
     this.currentIndex = (this.currentIndex + direction + this.cards.length) % this.cards.length;
@@ -216,9 +196,7 @@ export class ProjectGallery {
     if (this.modal) this.modal.hidden = true;
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Events                                                                  */
-  /* ---------------------------------------------------------------------- */
+  /* Events */
 
   _initEvents() {
     this.raycaster = new THREE.Raycaster();

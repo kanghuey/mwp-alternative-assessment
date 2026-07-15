@@ -1,30 +1,5 @@
 import * as THREE from 'three';
 
-/**
- * BackgroundScene
- * Interactive Three.js hero scene.
- *
- * The scene is themed around the page's actual content — a team building
- * projects together — instead of generic floating shapes:
- *   - a "project hub" icosahedron in the center, textured with a code
- *     snippet, representing the shared codebase/repo
- *   - four orbiting "member nodes", one per teammate, connected to the hub
- *     by lines like a collaboration/network graph
- *   - a gear, representing technical skills
- *   - a star, representing achievements
- *
- * Technical requirement checklist covered in this file:
- *  1. 3D objects        -> 7 meshes: hub, 4 member nodes, gear, star (>= 5 required)
- *  2. Textured object    -> hub icosahedron uses a CanvasTexture code snippet
- *                           (procedural, no external image needed)
- *  3. Lighting           -> AmbientLight (technique 1) + moving PointLight (technique 2)
- *  4. Animations         -> per-object rotation (animation 1) + sine-wave
- *                           floating/bobbing (animation 2)
- *  5. User interaction   -> mousemove parallax + click-to-highlight a member
- *                           node (raycaster), arrow-key rotation of the scene
- *  6. Camera movement    -> continuous slow orbit + mouse-parallax easing +
- *                           scroll-linked dolly (zoom) tied to the hero section
- */
 export class BackgroundScene {
   constructor(canvas, container) {
     this.canvas = canvas;
@@ -54,9 +29,7 @@ export class BackgroundScene {
     this._onResize();
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Setup                                                                   */
-  /* ---------------------------------------------------------------------- */
+  /* Setup */
 
   _initScene() {
     this.scene = new THREE.Scene();
@@ -322,9 +295,7 @@ export class BackgroundScene {
     });
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Events / interaction                                                    */
-  /* ---------------------------------------------------------------------- */
+  /* Events / interaction */
 
   _initEvents() {
     window.addEventListener('mousemove', this._onPointerMove, { passive: true });
@@ -399,9 +370,7 @@ export class BackgroundScene {
     this.renderer.setSize(width, height, false);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Render loop                                                             */
-  /* ---------------------------------------------------------------------- */
+  /* Render loop */
 
   start() {
     this.clock.start();
